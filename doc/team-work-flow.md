@@ -1,5 +1,6 @@
 [TOC]
-对比中英文文档，看清楚后和同事讲解（http://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-Rerere）
+
+[对比中英文文档，看清楚后和同事讲解](http://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-Rerere)
 
 # Todo
 
