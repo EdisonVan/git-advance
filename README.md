@@ -1,0 +1,33 @@
+- [第一章、前言](./docs/chapter1.md)
+- [第二章、创建版本库](./docs/chapter2.md)
+- [第三章、工作区和暂存区](./docs/chapter3.md)
+- [第四章、版本](./docs/chapter4.md)
+- [第五章、管理修改](./docs/chapter5.md)
+- [第六章、撤销修改](./docs/chapter6.md)
+- [第七章、删除文件](./docs/chapter7.md)
+- [第八章、远程仓库](./docs/chapter8.md)
+- [第九章、从远程库克隆](./docs/chapter9.md)
+- [第十章、分支管理](./docs/chapter10.md)
+- [第十一章、分支管理策略](./docs/chapter11.md)
+- [第十二章、Bug 分支](./docs/chapter12.md)
+- [第十三章、Featuer 分支](./docs/chapter13.md)
+- [第十四章、多人协作](./docs/chapter14.md)
+- [第十五章、Rebase](./docs/chapter15.md)
+- [第十六章、标签管理](./docs/chapter16.md)
+- [第十七章、操作标签](./docs/chapter17.md)
+- [第十八章、使用 GitHub](./docs/chapter18.md)
+- [第十九章、自定义 Git，让工作更高效](./docs/chapter19.md)
+- [第二十章、忽略特殊文件](./docs/chapter20.md)
+- [第二十一章、配置别名](./docs/chapter21.md)
+- [第二十二章、搭建 Git 服务器](./docs/chapter22.md)
+- [第二十三章、使用 GitHub 进行团队协作](./docs/chapter23.md)
+- [怎样选择适合自己团队的工作流？](./docs/team-work-flow.md)
+
+# 安装依赖
+
+- step1、下载v16.16.0版本的node：https:/docs//docs/nodejs.org/docs/en/docs/download/docs/releases/docs/
+    - 配套的npm是 8.11.0
+- step2、下载yarn：控制台跑命令`npm install --global yarn`
+- step3、在本仓库内打开终端，跑命令`yarn`安装依赖包
+- step4、跑`yarn start`会生成本地的url链接，点击链接浏览器中看页面效果
+- step5、往docs文件夹下放置markdown文件，整理完后，通过 上一步 的链接看浏览器效果
