@@ -5,10 +5,6 @@ hero:
   actions:
     - text: Git 手册
       link: /git_manual/summary
-    - text: GitLab
-      link: /git-lab/git-lab
-    - text: QA
-      link: /question/Summary
 features:
   - title: Hello
     emoji: 💎

@@ -3,13 +3,14 @@ title: 使用 GitHub
 nav:
   title: Git 手册
   path: /git_manual
+order: 19
 ---
 
 个人的开源项目，放到 GitHub 上是完全没有问题的。
 
 GitHub 还是一个**开源协作社区**，通过 GitHub，既可以让别人参与你的开源项目，也可以参与别人的开源项目。
 
-# 一、如何参与一个开源项目呢？
+## 如何参与一个开源项目呢
 
 比如 CSS 框架 `bootstrap` 项目，你可以访问[项目主页](https://github.com/twbs/bootstrap)
 
@@ -35,20 +36,19 @@ Bootstrap 的官方仓库 `twbs/bootstrap` 、你在 GitHub 上克隆的仓库 `
 
 - 如果你没能力修改 `bootstrap`，但又想要试一把 `pull request`，那就 `Fork` 一下同伴的仓库 **`https://github.com/Friends/subject`** ，创建一个 **`your-github-id.txt`** 的文本文件，然后推送一个 `pull request` 过去，同伴接受即可。
 
-# 二、小结
-
+**小结**
 - 在 GitHub 上，**可以任意 Fork 开源仓库**
 - **自己拥有 Fork 后的仓库的读写权限**
 - 可以推送 `pull request` **给官方仓库来贡献代码**
 
-# 三、学习资料
+## 学习资料
 
 **GitHub**
 
 - [GitHub 漫游指南 Phodal Huang,黄峰达,ThoughtWorks 高级咨询师](https://github.phodal.com/#/chapter/Github%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97)
 - [GitHub 秘籍](https://www.bookstack.cn/read/github-cheat-sheet/README.md)
 
-# 四、GitHub 使用指南
+## GitHub 使用指南
 
 快捷下载软件，找到对应仓库-releases-点击对应版本下载
 - fork：拷贝别人项目到自己帐号下
@@ -57,25 +57,25 @@ Bootstrap 的官方仓库 `twbs/bootstrap` 、你在 GitHub 上克隆的仓库 `
 - issue：仓库问题、需求、修复的 bug 集合
   - 通过给 issue 打标签进行分类会更简洁
 
-## GitHub 提 Pr 方法
+### GitHub 提 Pr 方法
 
 一般在 fork 别人仓库之后进行代码修改，修改好了需要合并到别人的仓库中，必须要提 Pr。
 所谓提 Pr 就是在 GitHub 仓库中点击`New pull request`按钮
 ![PrWay-20190619](../../assets/PrWay-20190619.png)
 
-## 组织创建(Team management)
+### 组织创建(Team management)
 
 - 建立团队
 - 对不同仓库授予不同权限
 
-## 文档(Documentation)
+### 文档(Documentation)
 
 - GitHub Page
   - 做博客
 - wikis
   - 功能说明手册
 
-## 在 GitHub 高效查找优质项目
+### 在 GitHub 高效查找优质项目
 
 一个开源项目有哪些组成部分：
 - name: 项目名
@@ -93,7 +93,7 @@ Bootstrap 的官方仓库 `twbs/bootstrap` 、你在 GitHub 上克隆的仓库 `
   - Repositories options 根据仓库属性进行搜索
   - Code options 根据 Code 选项，仓库里面带.xx 后缀文件的仓库
 
-### 高级搜索
+#### 高级搜索
 
 - `create:<2019-03-01`
   **创建在 3 月 1 日之前的仓库，<2019-03-01**
@@ -125,16 +125,16 @@ Bootstrap 的官方仓库 `twbs/bootstrap` 、你在 GitHub 上克隆的仓库 `
 - `in:description 微服务 language:python pushed:>2020-01-01`
   pushed:>2020-01-01 的意思是我们把项目的最后更新时间限制到 2020-01-01
 
-### 拓展
+#### 拓展
 
 GitHub 底部的 Help 点进去有很多完备的资料可供学习使用 GitHub
 Com+F 搜索`Searching for information onGitHub`可以看到更多关于 GitHub 搜索的功能
 
-# 开源项目质量如何保证
+## 开源项目质量如何保证
 
 `Pull requests`可以看自己或其他用户对开源项目的代码提交以及次数
 
-## 个人如何向开源项目提交代码
+### 个人如何向开源项目提交代码
 
 在对应仓库下的`Pull requests`选项，点击`New pull request`来新建一个代码提交申请
 

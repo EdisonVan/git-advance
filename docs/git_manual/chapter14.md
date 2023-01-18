@@ -3,6 +3,7 @@ title: 多人协作
 nav:
   title: Git 手册
   path: /git_manual
+order: 15
 ---
 
 从远程仓库克隆时，实际上 Git 自动把本地的 `master` 分支和远程的 `master` 分支对应起来了，且远程仓库的**默认名称是 `origin`**。
@@ -17,7 +18,7 @@ nav:
 
 上面显示了可以抓取和推送的 `origin` 的地址。如果没有推送权限，就看不到 `push` 的地址。
 
-# 一、推送分支
+## 推送分支
 
 推送分支，就是**把该分支上的所有本地提交推送到远程库**。
 
@@ -44,7 +45,7 @@ git push origin dev
 
 在 Git 中，分支完全可以在本地自己藏着玩，是否推送，视你的心情而定！
 
-# 二、抓取分支
+## 抓取分支
 
 多人协作时，大家都会往 `master` 和 `dev` 分支上推送各自的修改。
 
@@ -70,9 +71,9 @@ git branch
 现在，她就可以在 dev 上继续修改，然后时不时地把 dev 分支 push 到远程：
 
 ```bash
-  git add env.txt
-  git commit -m "add env"
-  git push origin dev
+git add env.txt
+git commit -m "add env"
+git push origin dev
 ```
 
 她已经向 `origin/dev` 分支推送了他的提交，而碰巧你也对同样的文件作了修改，并试图推送：
@@ -135,7 +136,7 @@ Automatic merge failed; fix conflicts and then commit the result.
   7a5e5dd..57c53ab dev -> dev
 ```
 
-# 三、多人协作的工作模式通常流程
+## 多人协作的工作模式通常流程
 
 - 1.尝试用 `git push origin <branch-name>` 推送自己的修改；
 
@@ -148,7 +149,7 @@ Automatic merge failed; fix conflicts and then commit the result.
   - 用命令 `git branch --set-upstream-to <branch-name> origin/<branch-name>`
   - 如：将本地分支和远程分支 `sifan` 进行关联 `git branch –set-upstream-to=origin/sifan`
 
-# 四、小结
+## 小结
 
 - 用 **git remote -v** 查看远程库信息
 - 本地**新建的分支如果不推送到远程**，对**其他人就是不可见**

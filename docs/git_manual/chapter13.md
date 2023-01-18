@@ -3,7 +3,10 @@ title: Featuer 分支
 nav:
   title: Git 手册
   path: /git_manual
+order: 14
 ---
+
+## Feature 分支
 
 添加一个新功能时，你肯定不希望因为一些实验性质的代码，把主分支搞乱了
 
@@ -52,7 +55,7 @@ git branch -d feature-vulcan
 
 ![13-6](../../assets/13-6.png)
 
-# 小结
+## 小结
 
 - 开发一个新 `feature`，最好新建一个分支
 - 如果要丢弃一个没有被合并过的分支，可以通过 `git branch -D <name>` 强行删除。

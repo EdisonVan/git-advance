@@ -1,11 +1,12 @@
 ---
 title: GitLab
 nav:
-  title: GitLab
-  path: /GitLab
+  title: Git 手册
+  path: /git_manual
+order: 26
 ---
 
-# GitLab（运维来做）
+## GitLab（运维来做）
 - 有企业定制需求
 - 迭代很快、发展飞速
 - GitLab代码开源（Ruby），公司开源基于开源版本做二次开发
@@ -28,12 +29,12 @@ nav:
     - 安全管控
 - [自动化部署](https://about.gitlab.com/stages-devops-lifecycle/auto-devops)
 
-## 项目管理
+### 项目管理
 - [issue功能](https://gitlab.com/gitlab-org/gitlab/-/issues)
   - issue看板可以拖动
   - issue可用于项目管理，提bug等
 
-## code review
+### code review
 - 对分支实行保护，团队之间不能直接合并到分支上
 - [Merge Requests阶段](https://gitlab.com/gitlab-org/gitlab/-/merge_requests)
     - 增加CodeReview,代码标砖限制
@@ -43,7 +44,7 @@ nav:
     - 人工CodeReview
 - Settings/Repository中进行相应push设置、设置保护分支
 
-## 保证集成质量
+### 保证集成质量
 - 前提：Settings->CI/CD->Runners(跑CI/CD的代理)
 - CI/CD会对每一次commit进行完备检查
   - Build->Prepare->Test->Post-test->post-cleanup
@@ -52,7 +53,7 @@ nav:
 - [检查具体的Pipelines是否包含相应CI/CD配置](https://gitlab.com/gitlab-org/gitlab/-/pipelines/223209012)
 - 部署过程利用了docker技术
 
-## 把应用部署到AWS（公有云）
+### 把应用部署到AWS（公有云）
 部署：根目录deploy文件夹
 AWS搭建：看AWS文档
 获取最新代码

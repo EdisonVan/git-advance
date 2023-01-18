@@ -3,7 +3,10 @@ title: 配置别名
 nav:
   title: Git 手册
   path: /git_manual
+order: 22
 ---
+
+## 配置命令别名
 
 有没有经常**敲错命令**？比如 `git status` ？`status` 这个单词真心不好记。
 
@@ -76,7 +79,7 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 ![21-1](../../assets/21-1.png)
 
-# 配置文件
+## 配置文件
 
 配置 Git 时加上 `--global` 是**针对当前用户起作用**的，**如果不加，那只针对当前的仓库**起作用。
 

@@ -3,15 +3,16 @@ title: 工作区和暂存区
 nav:
   title: Git 手册
   path: /git_manual
+order: 4
 ---
 
-# 一、工作区（Working Directory）
+## 工作区（Working Directory）
 
 就是你在电脑里能看到的目录，比如我的 `MyProject `文件夹就是个工作区
 
 ![3-1](../../assets/3-1.png)
 
-# 二、 版本库（Repository）
+## 版本库（Repository）
 
 工作区有一个隐藏目录`.git`，是 Git 的版本库
 
@@ -56,9 +57,9 @@ Git 非常清楚地告诉我们，`readme.txt` 被修改了，而 `LICENSE` 还�
 
 ![3-7](../../assets/3-7.png)
 
-# 代码提交注意事项 （Add git）
+## 代码提交注意事项 （Add git）
 
-## 代码提交推荐操作
+### 代码提交推荐操作
 
 1. git pull origin develop:sifan 从远程 develop 分支拉取代码到 sifan（自己的）分支
 2. git add . 本地代码全部更改提交到缓存区
@@ -73,7 +74,7 @@ Git 非常清楚地告诉我们，`readme.txt` 被修改了，而 `LICENSE` 还�
 8. git push origin sifan / git push —set-upstream origin 再次推送代码到自己的远程分支
 9. 最后再次在 tfs 检查自己是否有超前或者落后
 
-## SourceTree 提交代码（不太推荐）
+### SourceTree 提交代码（不太推荐）
 
 1.自己分支上修改代码先提交
 ![sourceTree发布流程1-20190307png](../../assets/sourceTree发布流程1-20190307png.png) 2.双击切换到 develop 分支，点击拉取代码

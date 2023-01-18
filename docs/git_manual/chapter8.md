@@ -3,11 +3,12 @@ title: 远程仓库
 nav:
   title: Git 手册
   path: /git_manual
+order: 9
 ---
 
-# 一、SSH 创建和 GitHub 绑定
+## SSH 创建和 GitHub 绑定
 
-## 第 1 步、创建 SSH Key。
+### 创建 SSH Key。
 
 在用户主目录下，看看有没有 `.ssh` 目录
 
@@ -29,7 +30,7 @@ ssh-keygen -t rsa -C "vanjohnson@foxmail.com"
 
 [MAC 如何显示和隐藏文件](https://blog.csdn.net/caoxiaohong1005/article/details/53466737)
 
-## 第 2 步：登陆 GitHub，打开“Account settings”
+### 登陆 GitHub，打开“Account settings”
 
 ![8-2](../../assets/8-2.png)
 
@@ -45,22 +46,19 @@ ssh-keygen -t rsa -C "vanjohnson@foxmail.com"
 
 ![8-5](../../assets/8-5.png)
 
-### 为什么 GitHub 需要 SSH Key 呢？
-
+为什么 GitHub 需要 SSH Key
 - 因为 GitHub 需要识别出你推送的提交确实是你推送的，而不是别人冒充的，而 Git 支持 `SSH` 协议，GitHub 只要知道了你的公钥，就可以确认只有你自己才能推送。
-
 - GitHub 允许你添加多个 Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的 Key 都添加到 GitHub，就可以在每台电脑上往 GitHub 推送了。
-
 - 在 GitHub 上免费托管的 Git 仓库，任何人都可以看到喔（但只有你自己才能改）。所以，不要把敏感信息放进去。
 - 如果你不想让别人看到 Git 库，有两个办法:
   - 交点保护费，让 GitHub 把公开的仓库变成私有的，这样别人就看不见了（不可读更不可写）
   - 自己动手，搭一个 Git 服务器。这个方法我们后面会讲到的，相当简单，公司内部开发必备
 
-# 二、添加远程库(GitHub 实操)
+## 添加远程库(GitHub 实操)
 
 你已经在本地创建了一个 `Git 仓库`后，又想在 GitHub 创建一个 `Git 仓库`，并且让这两个仓库进行远程同步，这样，GitHub 上的仓库既可以作为备份，又可让其他人通过该仓库来协作。
 
-##第一步
+### 第一步
 
 - 登陆 GitHub 在右上角找到“New repository”按钮，创建一个新的仓库：
 
@@ -99,7 +97,7 @@ git remote add origin git@github.com:EdisonVan/Vue-Demo.git
 解决方案：git push 然后再次 git remote add origin git@github.com:EdisonVan/Vue-Demo.git 会提示输入密码回车即可
 ```
 
-## 第二步
+### 第二步
 
 把本地库的所有内容推送到远程库上
 
@@ -137,11 +135,10 @@ git push origin master
 
 把本地 `master` 分支的最新修改推送至 GitHub，现在，你就拥有了真正的分布式版本库！
 
-## 切远程提示 lock 解决方案
+切远程提示 lock 解决方案
+- `git gc --prune=now`
 
-`git gc --prune=now`
-
-# 三、SSH 警告
+## SSH 警告
 
 当你第一次使用 Git 的 `clone` 或者 `push` 命令连接 GitHub 时，会得到一个警告：
 
@@ -162,10 +159,8 @@ Warning: Permanently added 'github.com' (RSA) to the list of known hosts.
 - 这个警告只会出现一次，后面的操作就不会有任何警告了
 - 如果担心有人冒充 GitHub 服务器，输入 yes 前可以对照 GitHub 的 `RSA Key` 的指纹信息是否与 `SSH` 连接给出的一致。
 
-# 四、小结
+## 小结
 
 - `git remote add origin git@server-name:path/repo-name.git` 关联一个远程库
-
 - 关联后，用 `git push -u origin master` 第一次推送 master 分支的所有内容
-
 - 此后，每次本地提交后，只要有必要，就可以使用命令 `git push origin master` 推送最新修改

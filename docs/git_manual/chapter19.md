@@ -3,9 +3,10 @@ title: 自定义 Git
 nav:
   title: Git 手册
   path: /git_manual
+order: 20
 ---
 
-# 一、颜色配置
+## 颜色配置
 
 - 比如， **`git config --global color.ui true` 让 Git 显示颜色**，会让命令输出看起来更醒目, **Git 会适当地显示不同的颜色**
 

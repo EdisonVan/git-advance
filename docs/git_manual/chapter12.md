@@ -3,7 +3,10 @@ title: Bug 分支
 nav:
   title: Git 手册
   path: /git_manual
+order: 13
 ---
+
+## Bug 分支
 
 每个 `bug` 都可通过一个新的临时分支来修复，修复后，合并分支，然后将临时分支删除。
 
@@ -83,7 +86,7 @@ git stash pop
 git stash apply stash@{0}
 ```
 
-# 小结
+## 小结
 
 - 修复 bug 时，我们会通过创建新的 bug 分支进行修复，然后合并删除；
 - 当手头工作没有完成时，先把工作现场 `git stash` 一下，然后去修复 bug，修复后，再 `git stash pop` 回到工作现场。

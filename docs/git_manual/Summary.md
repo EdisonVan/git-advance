@@ -1,8 +1,9 @@
 ---
-title: Summary
+title: 大纲预览
 nav:
   title: Git 手册
   path: /git_manual
+order: 1
 ---
 
 - [第一章、前言](./chapter1.md)
@@ -29,3 +30,7 @@ nav:
 - [第二十二章、搭建 Git 服务器](./chapter22.md)
 - [第二十三章、使用 GitHub 进行团队协作](./chapter23.md)
 - [vscode_git](./vscode_git.md)
+- [GitLab](./gitlab.md)
+- QA
+  - [怎样选择适合自己团队的工作流？](./team-work-flow.md)
+  - [如何解决连接超时问题](./time_out.md)

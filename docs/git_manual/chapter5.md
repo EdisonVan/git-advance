@@ -3,9 +3,10 @@ title: 管理修改
 nav:
   title: Git 手册
   path: /git_manual
+order: 6
 ---
 
-# 一、比较两个历史快照
+## 比较两个历史快照
 
 - 对 README.md 新增 4 行
 
@@ -23,9 +24,9 @@ nav:
 旧文件从第 7 行开始显示，总共显示 9 行
 新文件从第 7 行开始显示，总共显示 7 行
 
-# 二、比较暂存区域和 Git 仓库快照
+## 比较暂存区域和 Git 仓库快照
 
-## 2.1 比较暂存区域和工作区
+### 比较暂存区域和工作区
 
 ```
 git diff –cached[快照 ID]
@@ -57,7 +58,7 @@ Git is a distributed version control system.
 
 (`index` 这行是文件 id、指定文件类型)
 
-## 2.2 提交第二次修改的方法
+### 提交第二次修改的方法
 
 - 先 `git add` 第二次修改，
 - 再 `git commit` ，就相当于把两次修改合并后一块提交了

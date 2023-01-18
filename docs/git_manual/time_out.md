@@ -1,11 +1,12 @@
 ---
 title: 连接超时
 nav:
-  title: QA
-  path: /queasion
+  title: Git 手册
+  path: /git_manual
+order: 28
 ---
 
-# Failed to connect to github.com port 443: Timed out
+## Failed to connect to github.com port 443: Timed out
 
 **方案一：通过 switchHosts 设置两套环境**
 **公司 vpn**

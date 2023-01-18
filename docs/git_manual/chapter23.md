@@ -3,11 +3,12 @@ title: 使用 GitHub 进行团队协作
 nav:
   title: Git 手册
   path: /git_manual
+order: 24
 ---
 
-# [git 为不同的项目设置不同的用户名](https://www.jianshu.com/p/d3f80a1246d6)
+[git 为不同的项目设置不同的用户名](https://www.jianshu.com/p/d3f80a1246d6)
 
-# 一、启用 issue 跟踪需求和任务
+## 启用 issue 跟踪需求和任务
 
 > Github issues:用来**跟踪需求、增强功能，任务，bug**等
 
@@ -48,7 +49,7 @@ nav:
 
 ![23-12](../../assets/23-12.png)
 
-# 二、如何用 project 管理 issue？
+## 如何用 project 管理 issue
 
 - 2.1 点击 `projects`，然后 `New project`
 
@@ -62,14 +63,14 @@ nav:
 
 ![23-15](../../assets/23-15.png)
 
-# 三、项目内部怎么实施 code review？
+## 项目内部怎么实施 code review
 
 - 任意项目->Settings->branches->Add rule:
   ![23-16](../../assets/23-16.png)
 - 选择分支，下面有一些 review 的规则，根据自己需要选择规则。最后 Create
   ![23-17](../../assets/23-17.png)
 
-# 四、团队协作时如何做多分支的集成？
+## 团队协作时如何做多分支的集成
 
 - 任意项目->Pull requests->New pull request
   ![23-18](../../assets/23-18.png)
@@ -95,7 +96,7 @@ nav:
 - 最后 confirm
   ![23-25](../../assets/23-25.png)
 
-# 五、怎样保证集成的质量？
+## 怎样保证集成的质量
 
 - Settings->Branches
   ![23-26](../../assets/23-26.png)

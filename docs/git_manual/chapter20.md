@@ -3,6 +3,7 @@ title: 忽略特殊文件
 nav:
   title: Git 手册
   path: /git_manual
+order: 21
 ---
 
 有时候必须把某些文件放到 Git 工作目录中，但又不能提交它们
@@ -19,7 +20,7 @@ nav:
 
 所有配置文件可以在线浏览：**`https://github.com/github/gitignore`**
 
-# 一、忽略文件的原则
+## 忽略文件的原则
 
 - 1.**忽略操作系统自动生成的文件**，如缩略图等
 - 2.**忽略编译生成的中间文件、可执行文件等**，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如 `Java` 编译产生的 `.class` 文件
@@ -69,7 +70,7 @@ deploy_key_rsa
 - 4.把 `.gitignore` 也提交到 Git，就完成了！
 - 5.当然**检验 `.gitignore`** 的标准是 `git status` 命令是不是说 **`working directory clean`**。
 
-# 二、注意事项
+## 注意事项
 
 - 1.使用 `Windows` 的用户：如果你在资源管理器里新建一个 **`.gitignore`** 文件，它会非常弱智地提示你必须输入文件名，但是在文本编辑器里“保存”或者“另存为”就可以把文件保存为 **`.gitignore`** 了。
 
@@ -97,7 +98,7 @@ git check-ignore -v App.class
 
 Git 会告诉我们，**`.gitignore`** 的第 3 行规则忽略了该文件，于是我们就可以知道应该修订哪个规则。
 
-# 三、小结
+## 小结
 
 - 忽略某些文件时，需要编写 **`.gitignore`**
 - **`.gitignore`** 文件本身要放到版本库里，并且可以对 **`.gitignore`** 做版本管理！

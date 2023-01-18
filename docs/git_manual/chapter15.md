@@ -3,7 +3,10 @@ title: Rebase
 nav:
   title: Git 手册
   path: /git_manual
+order: 16
 ---
+
+## Rebase
 
 多人在同一个分支上协作时，容易出现冲突。
 
@@ -185,7 +188,7 @@ git log --graph --pretty=oneline --abbrev-commit
 
 远程分支的提交历史也是一条直线。
 
-# 将连续的 commit 合并为一个
+## 将连续的 commit 合并为一个
 
 ```bash
 git branch -av  # 查看当前所在分支
@@ -212,7 +215,7 @@ git rebase --continue
 # .如果没有冲突，或者冲突已经解决，输入wq保存并退出
 ```
 
-# 小结
+## 小结
 
 - `rebase` 操作可以把本地未 `push` 的分叉提交历史**整理成直线**
 - `rebase` 的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比

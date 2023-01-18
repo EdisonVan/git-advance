@@ -3,13 +3,14 @@ title: 分支管理策略
 nav:
   title: Git 手册
   path: /git_manual
+order: 12
 ---
 
 通常，合并分支时，如果可能，Git 会用`Fast forward`模式，删除分支后，会丢掉分支信息。
 
 如果要强制禁用 `Fast forward` 模式，Git 会在`merge` 时生成一个新的 `commit` ，这样，从分支历史上就可以看出分支信息。
 
-# 一、no-ff 方式的 git merge 实战
+## no-ff 方式的 git merge 实战
 
 - 1.`git checkout -b dev` 创建并切换 dev 分支
 
@@ -47,7 +48,7 @@ git log --graph --pretty=oneline --abbrev-commit
 
 ![11-7](../../assets/11-7.png)
 
-# 二、分支策略
+## 分支策略
 
 实际开发中应该按照几个基本原则进行分支管理：
 
@@ -59,15 +60,16 @@ git log --graph --pretty=oneline --abbrev-commit
 
 ![11-8](../../assets/11-8.png)
 
-# 三、小结
-
-- Git 分支十分强大，在团队开发中应该充分应用。
-- 合并分支时，加上`--no-ff` 参数就可以用普通模式合并,`合并后的历史有分支`，能看出来曾经做过合并
-- 而 `fast forward` 合并就看不出来曾经做过合并。
-
-# 分支被弄脏后的解决方案
+## 分支被弄脏后的解决方案
 
 - 从最新 master 分支拉取代码建立新分支
 - 将原本分支需要的代码，cherry-pick 到新分支 git cherry-pick 对应 commit
 - 遇到冲突，解决冲突
 - 冲突解决后 git cherry-pick —continue
+
+## 小结
+
+- Git 分支十分强大，在团队开发中应该充分应用。
+- 合并分支时，加上`--no-ff` 参数就可以用普通模式合并,`合并后的历史有分支`，能看出来曾经做过合并
+- 而 `fast forward` 合并就看不出来曾经做过合并。
+

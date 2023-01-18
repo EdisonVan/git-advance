@@ -1,19 +1,20 @@
 ---
 title: 选择适合团队的工作流
 nav:
-  title: QA
-  path: /question
+  title: Git 手册
+  path: /git_manual
+order: 27
 ---
 
 [对比中英文文档，看清楚后和同事讲解](http://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-Rerere)
 
-# Todo
+## Todo
 
 改动一个 bug 进行 rebase
 昨天赵的提交 flow 作为对比
 看完其他几篇文章，完善文档
 
-# rebase 和 merge 的区别
+## rebase 和 merge 的区别
 
 merge:取不同的内容放置到自己的 branch 上，会保留被获取 branch 的历史 commit 记录（按照原本时间进行保留），会混入他人的 chekin，merge 会导致不同分支间的交叉，容易把他人代码当成自己的代码，不便于进行 CodeReview
 例.2 个 branch 之间有别人的提交修改，merge 之后无法清晰的区分谁写的那一部分，张三提交 3 次，李四提交 4 次，张三再次提交 3 次，如果都是通过 merge 的方式，很难查看谁提交了那段代码
@@ -27,27 +28,27 @@ gitFlow/代码树
 
 ![](../../assets/rebase-20210415.png)
 
-# 大型开源项目的 gitFlow
+## 大型开源项目的 gitFlow
 
 - [taro](https://github.com/NervJS/taro/network)
 - [微前端框架-乾坤](https://github.com/umijs/qiankun/network)
 
-# 考虑因素
+## 考虑因素
 
 - 团队人员的组成
 - 研发设计能力
 - 输出产品的特征
 - 项目难易程度
 
-## GitHub Flow
+### GitHub Flow
 
 ![GitHub Flow](../../assets/GitHubFlow-20200217.png)
 
-## GitLab Flow(带环境分支)
+### GitLab Flow(带环境分支)
 
 ![GitHub Flow](../../assets/GitLabFlow-20200217.png)
 
-## 在 Github 选择合适的分支集成策略
+### 在 Github 选择合适的分支集成策略
 
 insights-Network：观看版本数演进以及分支提交情况
 settings-Merge button
@@ -56,7 +57,7 @@ settings-Merge button
 - Allow squash merging (适合线性模式)
 - Allow rebase merging（适合严格线性模式，团队要求所以提交最后是清晰的一条时）
 
-## Pull requests
+### Pull requests
 
 点击`New pull request`来合并自己改动的内容到仓库
 例：base:master <- compare:Sifan
@@ -68,13 +69,13 @@ settings-Merge button
 - Rebase and merge (将分支的 commit 依次有序的放置到 master(base)分支)
   下拉选择之后，再点击`Merge and request`-`Confirm merge`即可，出现紫色方框说明 merge 成功！合并成功之后可以点击`Delete branch`将当前分支删除，一般情况不建议马上删除，应该等 master 分支合并稳定一段时间再删除！
 
-## 分支命名规范
+### 分支命名规范
 
 - feature/名字/开发内容：feature/sifan/optimizationStores
 
 ![在sourceTree上看到效果如下](../../assets/formatName-20200731.png)
 
-# 团队内分支管理策略
+## 团队内分支管理策略
 
 - 始终保证 master 为最新代码
 - 在自己开发完的功能分支：git rebase master
@@ -120,7 +121,7 @@ gitk -all
 
 > 本文首发：http://yuweiguocn.github.io/
 
-# 拓展
+## 拓展
 
 - [为什么 rebase 非常重要？squash merge 是什么？](https://www.bilibili.com/video/BV1cJ411k7UQ?from=search&seid=1607128149653403154)
 - [git merge 和 git rebase 的区别, 切记：永远用 rebase](https://www.bilibili.com/video/BV1fJ411z7aK?from=search&seid=2118246880969624129)
