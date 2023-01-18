@@ -1,5 +1,5 @@
 ---
-title: vscode_git
+title: VSCode中使用Git
 nav:
   title: Git 手册
   path: /git_manual
@@ -11,12 +11,12 @@ order: 25
 ### 初始化
 
 1. 先创建一个名为 PhotoWeb 的文件夹，当然它不在 git 的版本控制管理中。
-2. 用 VS Code 打开终端（Command+shift+Y）用 git init 初始化 git 仓库 
-3. 通过 git add .添加当前目录下的所有文件，通过 xxx 添加单个文件 
+2. 用 VS Code 打开终端（Command+shift+Y）用 git init 初始化 git 仓库
+3. 通过 git add .添加当前目录下的所有文件，通过 xxx 添加单个文件
 4. 执行上传到 git 仓库命令 git commit -m "可写注释内容"
-5. vs code 左侧打开 GIT 图标，在上方有提交和刷新按钮，下拉菜单里有更多选项。 
+5. vs code 左侧打开 GIT 图标，在上方有提交和刷新按钮，下拉菜单里有更多选项。
 6. 回到我们的文件中，刚才的操作创建了一个.git 文件夹，放置了当前仓库的所有配置文件
-![Src](../../assets/Src.png)
+   ![Src](../../assets/Src.png)
 
 ### 连接 GitHub 远程代码仓库
 

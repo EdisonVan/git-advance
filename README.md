@@ -24,13 +24,13 @@
 - [怎样选择适合自己团队的工作流？](./docs/question/team-work-flow.md)
 - [如何解决连接超时问题](./docs/question/time_out.md)
 - [gitLab](./docs/GitLab/GitLab.md)
-- [vscode_git](./docs/git_manual/vscode_git.md)
+- [VSCode 中使用 Git](./docs/git_manual/vscode_git.md)
 
 # 安装依赖
 
-- step1、下载v16.16.0版本的node：https://nodejs.org/en/download/releases/
-    - 配套的npm是 8.11.0
-- step2、下载yarn：控制台跑命令`npm install --global yarn`
+- step1、下载 v16.16.0 版本的 node：https://nodejs.org/en/download/releases/
+  - 配套的 npm 是 8.11.0
+- step2、下载 yarn：控制台跑命令`npm install --global yarn`
 - step3、在本仓库内打开终端，跑命令`yarn`安装依赖包
-- step4、跑`yarn start`会生成本地的url链接，点击链接浏览器中看页面效果
-- step5、往docs文件夹下放置markdown文件，整理完后，通过 上一步 的链接看浏览器效果
+- step4、跑`yarn start`会生成本地的 url 链接，点击链接浏览器中看页面效果
+- step5、往 docs 文件夹下放置 markdown 文件，整理完后，通过 上一步 的链接看浏览器效果
