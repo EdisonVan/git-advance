@@ -1,12 +1,14 @@
 ---
 hero:
-  title: 在线文档
+  title: Git 在线文档
   description:
   actions:
-    - text: 英文测试
-      link: /base/english_test
-    - text: 更多内容
-      link: /
+    - text: Git 手册
+      link: /git_manual/summary
+    - text: GitLab
+      link: /git-lab/git-lab
+    - text: QA
+      link: /question/Summary
 features:
   - title: Hello
     emoji: 💎
@@ -18,5 +20,3 @@ features:
     emoji: 🚀
     description: Put ! description here
 ---
-
-fe-interview
