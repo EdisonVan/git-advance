@@ -190,6 +190,14 @@ git log --graph --pretty=oneline --abbrev-commit
 
 ## 将连续的 commit 合并为一个
 
+
+- `git rebase -i`
+  - -i 参数表示交互（interactive），该命令会进入到一个可对里面的 commit 做一些操作的 Vim 编辑界面
+    - 会先列出给定之前（不包括，越下面越新）的所有 commit，每个 commit 前面有一个操作命令，默认是 pick
+    - 可选择不同的 commit，并修改 commit 前面的命令，来对该 commit 执行不同的变更操作
+
+![](../../assets/rebase-i-view.png)
+
 ```bash
 git branch -av  # 查看当前所在分支
 git log --graph # 查看提交记录
