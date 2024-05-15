@@ -29,8 +29,9 @@ order: 1
 - [第二十一章、配置别名](./chapter21.md)
 - [第二十二章、搭建 Git 服务器](./chapter22.md)
 - [第二十三章、使用 GitHub 进行团队协作](./chapter23.md)
-- [vscode_git](./vscode_git.md)
-- [GitLab](./gitlab.md)
-- QA
+- [第二十四章、vscode中使用Git](./vscode_git.md)
+- [第二十五章、GitLab](./gitlab.md)
+- 第二十六章、QA
   - [怎样选择适合自己团队的工作流？](./team-work-flow.md)
   - [如何解决连接超时问题](./time_out.md)
+- [第二十七章、工作流设计](./workflow_design.md)

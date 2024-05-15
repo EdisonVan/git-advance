@@ -223,6 +223,212 @@ git rebase --continue
 # .如果没有冲突，或者冲突已经解决，输入wq保存并退出
 ```
 
+## git rebase 支持的变更操作
+
+![2-1](../../assets/变更操作-20220625.png '变更操作')
+
+- 在上面的 7 个命令中，squash 和 fixup 可用来合并 commit
+  - e.g. 用 squash 来合并，只需要把要合并的 commit 前面的动词，改成 squash（或 s）即可
+
+```bash
+pick 07c5abd Introduce OpenPGP and teach basic usage
+s de9b1eb Fix PostChecker::Post#urls
+s 3e7ee36 Hey kids, stop all the highlighting
+pick fa20af3 git interactive rebase, squash, amend
+```
+
+- rebase 后，第 2 行和第 3 行的 commit 都会合并到第 1 行的 commit。这个时，提交的信息会同时包含这三个 commit 的提交信息：
+
+```
+# This is a combination of 3 commits.
+# The first commit's message is:
+Introduce OpenPGP and teach basic usage
+
+# This is the 2ndCommit Message:
+Fix PostChecker::Post#urls
+
+# This is the 3rdCommit Message:
+Hey kids, stop all the highlighting
+```
+
+- 如果将第 3 行的 squash 命令改成 fixup 命令：
+
+```
+pick 07c5abd Introduce OpenPGP and teach basic usage
+s de9b1eb Fix PostChecker::Post#urls
+f 3e7ee36 Hey kids, stop all the highlighting
+pick fa20af3 git interactive rebase, squash, amend
+```
+
+- 如果将第 3 行的 squash 命令改成 fixup 命令：
+
+```
+
+pick 07c5abd Introduce OpenPGP and teach basic usage
+s de9b1eb Fix PostChecker::Post#urls
+f 3e7ee36 Hey kids, stop all the highlighting
+pick fa20af3 git interactive rebase, squash, amend
+```
+
+- rebase 后，还是会生成两个 commit，第 2 行和第 3 行的 commit，都合并到第 1 行的 commit。但，新的提交信息里面，第 3 行 commit 的提交信息会被注释掉：
+
+```
+
+# This is a combination of 3 commits.
+# The first commit's message is:
+Introduce OpenPGP and teach basic usage
+
+# This is the 2ndCommit Message:
+Fix PostChecker::Post#urls
+
+# This is the 3rdCommit Message:
+# Hey kids, stop all the highlighting
+```
+
+- 在使用 git rebase 进行操作时，注意事项：
+  - 删除某个 commit 行，则该 commit 会丢失掉
+  - 删除所有的 commit 行，则 rebase 会被终止掉
+  - 可对 commits 进行排序，git 会从上到下进行合并
+
+#### git rebase -i：修改某次 commit 的 message
+
+如果想修改的 Commit Message 不是最近一次的 Commit Message，可通过 git rebase -i <父 commit ID>命令来修改。这个命令在实际开发中使用频率比较高，一定要掌握。具体来说，使用它主要分为 4 步
+
+- 查看当前分支的日志记录
+
+```
+$ git log --oneline
+1d6289f docs(docs): append test line 'update3' to README.md
+a38f808 docs(docs): append test line 'update$i' to README.md
+55892fa docs(docs): append test line 'update1' to README.md
+89651d4 docs(doc): add README.md
+```
+
+可看到倒数第 3 次提交的 Commit Message 是：docs(docs): append test line 'update$i' to README.md，其中 update$i 正常应该是 update2
+
+- 修改倒数第 3 次提交 commit 的 message。
+  在 Git 仓库下直接执行命令 git rebase -i 55892fa，然后会进入一个交互界面。在交互界面中，修改最近一次的 Commit Message。这里使用 reword 或 r，保留倒数第 3 次的变更信息，但修改其 message，如下图所示：
+  ![保留变更信息](../../assets/保留变更信息-20220625.png)
+
+- 修改完成后执行:wq 保存，还会跳转到一个新的交互页面，如下图所示：
+  ![交互界面5](../../assets/交互界面5-20220625.png)
+
+- 修改完成后执行:wq 保存，退出编辑器之后，会在命令行显示该 commit 的 message 的更新结果：
+
+```
+[detached HEAD 5a26aa2] docs(docs): append test line 'update2' to README.md
+ Date: Fri Sep 18 13:45:54 2020 +0800
+ 1 file changed, 1 insertion(+)
+Successfully rebased and updated refs/heads/master.
+```
+
+Successfully rebased and updated refs/heads/master.说明 rebase 成功，其实这里完成了两个步骤：更新 message，更新该 commit 的 HEAD 指针。
+
+这里一定要传入想要变更 Commit Message 的父 commit ID：git rebase -i <父 commit ID>。
+
+- 查看倒数第 3 次 commit 的 message 是否被更新
+
+```
+$ git log --oneline
+7157e9e docs(docs): append test line 'update3' to README.md
+5a26aa2 docs(docs): append test line 'update2' to README.md
+55892fa docs(docs): append test line 'update1' to README.md
+89651d4 docs(doc): add README.md
+```
+
+可看到，倒数第 3 次 commit 的 message 成功被修改为期望的内容
+
+- Commit Message 是 commit 数据结构中的一个属性，如果 Commit Message 有变更，则 commit ID 一定会变，git commit --amend 只会变更最近一次的 commit ID，但 git rebase -i 会变更父 commit ID 之后所有提交的 commit ID
+- 如果当前分支有未 commit 的代码，需要先执行 git stash 将工作状态进行暂存，当修改完成后再执行 git stash pop 恢复之前的工作状态
+
+### 合并提交操作示例
+
+假设需要研发一个新的模块：user，用来在平台里进行用户的注册、登录、注销等操作，当模块完成开发和测试后，需要合并到主干分支，具体步骤如下。
+
+- 首先，新建一个分支。需要先基于 master 分支新建并切换到 feature 分支：
+
+```
+$ git checkout -b feature/user
+Switched to a new branch 'feature/user'
+```
+
+- 这是所有 commit 历史：
+
+```
+$ git log --oneline
+7157e9e docs(docs): append test line 'update3' to README.md
+5a26aa2 docs(docs): append test line 'update2' to README.md
+55892fa docs(docs): append test line 'update1' to README.md
+89651d4 docs(doc): add README.md
+```
+
+- 接着，在 feature/user 分支进行功能的开发和测试，并遵循规范提交 commit，功能开发并测试完成后，Git 仓库的 commit 记录如下：
+
+```
+$ git log --oneline
+4ee51d6 docs(user): update user/README.md
+176ba5d docs(user): update user/README.md
+5e829f8 docs(user): add README.md for user
+f40929f feat(user): add delete user function
+fc70a21 feat(user): add create user function
+7157e9e docs(docs): append test line 'update3' to README.md
+5a26aa2 docs(docs): append test line 'update2' to README.md
+55892fa docs(docs): append test line 'update1' to README.md
+89651d4 docs(doc): add README.md
+```
+
+提交了 5 个 commit。接下来，需要将 feature/user 分支的改动合并到 master 分支，但 5 个 commit 太多了，想将这些 commit 合并后再提交到 master 分支。
+
+- 接着，合并所有 commit。在上一步中，知道 fc70a21 是 feature/user 分支的第一个 commit ID，其父 commit ID 是 7157e9e，需要将 7157e9e 之前的所有分支 进行合并，可执行：
+
+```
+$ git rebase -i 7157e9e
+```
+
+- 执行命令后，会进入到一个交互界面，在该界面中，可将需要合并的 4 个 commit，都执行 squash 操作，如下图所示：
+  ![交互界面2](../../assets/交互界面2-20220625.png)
+
+- 修改完成后执行:wq 保存，会跳转到一个新的交互页面，在该页面，可编辑 Commit Message，编辑后的内容如下图所示：
+  ![交互界面3](../../assets/交互界面3-20220625.png)
+  `#`开头的行是 git 的注释，可忽略掉，在 rebase 后，这些行将会消失掉。修改完成后执行:wq 保存，就完成了合并提交操作。
+
+- git rebase -i 这里的一定要是需要合并 commit 中最旧 commit 的父 commit ID
+- 希望将 feature/user 分支的 5 个 commit 合并到一个 commit，在 git rebase 时，需要保证其中最新的一个 commit 是 pick 状态，这样才可将其他 4 个 commit 合并进去
+
+- `然后，用如下命令来检查 commits 是否成功合并`。可看到，成功将 5 个 commit 合并成为了一个 commit：d6b17e0
+
+```
+$ git log --oneline
+d6b17e0 feat(user): add user module with all function implements
+7157e9e docs(docs): append test line 'update3' to README.md
+5a26aa2 docs(docs): append test line 'update2' to README.md
+55892fa docs(docs): append test line 'update1' to README.md
+89651d4 docs(doc): add README.md
+```
+
+- `最后，就可将 feature 分支` feature/user 的改动合并到主干分支，从而完成新功能的开发
+
+```
+$ git checkout master
+$ git merge feature/user
+$ git log --oneline
+d6b17e0 feat(user): add user module with all function implements
+7157e9e docs(docs): append test line 'update3' to README.md
+5a26aa2 docs(docs): append test line 'update2' to README.md
+55892fa docs(docs): append test line 'update1' to README.md
+89651d4 docs(doc): add README.md
+```
+
+- 如果有太多的 commit 需要合并，那么可试试这种方式：先撤销过去的 commit，然后再建一个新的
+
+```
+$ git reset HEAD~3
+$ git add .
+$ git commit -am "feat(user): add user resource"
+```
+
+除了 commit 实在太多时，一般情况下不建议用这种方法，有点粗暴，且之前提交的 Commit Message 都要重新整理一遍
+
 ## 小结
 
 - `rebase` 操作可以把本地未 `push` 的分叉提交历史**整理成直线**

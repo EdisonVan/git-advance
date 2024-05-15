@@ -8,7 +8,7 @@ order: 9
 
 ## SSH 创建和 GitHub 绑定
 
-### 创建 SSH Key。
+### 创建 SSH Key
 
 在用户主目录下，看看有没有 `.ssh` 目录
 

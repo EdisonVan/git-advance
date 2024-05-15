@@ -11,6 +11,11 @@ order: 2
 - 按 ESC 按键后，键入`:e！`恢复上次编辑保存的文件状态
 - e.g.上次输入的是 print 并且按：w 保存了。这时再次编辑这个文件，即使你把原来的保存的 print 字符串删除了，那么只需要按这个：`e！`就会恢复这个 print 字符串。(一旦你按了这个命令，当前输入的文本将会消失不见)
 
+```bash
+git config --global core.ignorecase false
+# 避免 https://stackoverflow.com/questions/10523849/how-do-you-change-the-capitalization-of-filenames-in-git
+```
+
 ### 重命名文件
 
 ```
@@ -22,6 +27,12 @@ git mv  旧文件名 新文件名
 
 ```bash
 git mv home.j this.js
+```
+
+git 设置文件区分大小写
+
+```bash
+git config core.ignorecase false
 ```
 
 ## 安装 Git

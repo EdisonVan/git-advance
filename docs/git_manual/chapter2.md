@@ -20,7 +20,7 @@ order: 3
 
 - 选择一个合适的地方，创建一个空目录：
 
-```
+```bash
 mkdir GiKu
 cd GiKu
 pwd pwd 命令用于显示当前目录
@@ -115,3 +115,43 @@ git commit -m "add 3 files."
 
 - 如果第一次` commit`（未` amend`）时就已经 `push` 到 Github 了，这时在修改和重新提交之后的 push 需要加上`--force` 参数，即 `git push --force `
 - 如果第一次 `commit` 之后没有` push` 到 GitHub，那么就没有影响。
+
+### 修改 Commit Message
+
+即使有了 Commit Message 规范，但仍然可能会遇到提交的 Commit Message 不符合规范的情况，这个时就需要能够修改之前某次 commit 的 Commit Message
+
+- 有两种修改方法，分别对应两种不同情况：
+  - git commit --amend：修改最近一次 commit 的 message
+  - git rebase -i：修改某次 commit 的 message
+
+#### git commit --amend：修改最近一次 commit 的 message
+
+有时，刚提交完一个 commit，但发现 commit 的描述不符合规范或需要纠正，这时，可通过 git commit --amend 命令来修改刚刚提交 commit 的 Commit Message
+
+```
+$ git log --oneline
+418bd4 docs(docs): append test line 'update$i' to README.md
+89651d4 docs(doc): add README.md
+```
+
+- 查看当前分支的日志记录，可看到，最近一次的 Commit Message 是 docs(docs): append test line 'update$i' to README.md，其中 update$i 正常应该是 update1
+
+- 在当前 Git 仓库下执行命令：git commit --amend，修改最近一次的 Commit Message
+  ![交互界面4](../../assets/交互界面4-20220625.png)
+- 修改完成后执行:wq 保存，退出编辑器之后，会在命令行显示，该 commit 的 message 的更新结果如下：
+
+```bash
+[master 55892fa] docs(docs): append test line 'update1' to README.md
+ Date: Fri Sep 18 13:40:42 2020 +0800
+ 1 file changed, 1 insertion(+)
+```
+
+- 查看最近一次的 Commit Message 是否被更新
+
+```bash
+$ git log --oneline
+55892fa docs(docs): append test line 'update1' to README.md
+89651d4 docs(doc): add README.md
+```
+
+可看到最近一次 commit 的 message 成功被修改为期望的内容

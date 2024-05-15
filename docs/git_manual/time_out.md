@@ -46,6 +46,61 @@ brew cask install switchhosts
 ping raw.githubusercontent.com
 ```
 
+**System Hosts**
+
+```bash
+##
+
+# Host Database
+
+#
+
+# localhost is used to configure the loopback interface
+
+# when the system is booting. Do not change this entry.
+
+<!-- 199.232.4.133 raw.githubusercontent.com
+140.82.112.4 github.com
+199.232.69.194 github.global.ssl.fastly.net
+185.199.108.153 assets-cdn.github.com
+185.199.109.153 assets-cdn.github.com
+185.199.110.153 assets-cdn.github.com
+185.199.111.153 assets-cdn.github.com -->
+
+##
+
+127.0.0.1 localhost
+255.255.255.255 broadcasthost
+::1 localhost
+
+# --- SWITCHHOSTS_CONTENT_START ---
+
+199.232.4.133 raw.githubusercontent.com
+140.82.113.4 github.com
+199.232.69.194 github.global.ssl.fastly.net
+185.199.108.153 assets-cdn.github.com
+185.199.109.153 assets-cdn.github.com
+185.199.110.153 assets-cdn.github.com
+185.199.111.153 assets-cdn.github.com
+```
+
+**方案二**
+
+```bash
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+sudo vim /etc/hosts
+
+git config http.proxy http://192.168.201.9:8080
+git config https.proxy http://192.168.201.9:8080
+git config user.email "vanjohnson@foxmail.com"
+git config user.name "EdisonVan"
+git push -u origin --all
+
+brew cask install switchhosts
+ping raw.githubusercontent.com
+```
+
 [433 解决方案](https://stackoverflow.com/questions/49345357/fatal-unable-to-access-https-github-com-xxx-openssl-ssl-connect-ssl-error)
 
 - https://www.ipaddress.com/
