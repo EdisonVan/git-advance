@@ -21,10 +21,12 @@
 - [第二十一章、配置别名](./docs/git_manual/chapter21.md)
 - [第二十二章、搭建 git 服务器](./docs/git_manual/chapter22.md)
 - [第二十三章、使用 gitHub 进行团队协作](./docs/git_manual/chapter23.md)
-- [怎样选择适合自己团队的工作流？](./docs/question/team-work-flow.md)
-- [如何解决连接超时问题](./docs/question/time_out.md)
-- [gitLab](./docs/GitLab/GitLab.md)
-- [VSCode 中使用 Git](./docs/git_manual/vscode_git.md)
+- [第二十四章、vscode 中使用 Git](./docs/git_manual/vscode_git.md)
+- [第二十五章、GitLab](./docs/git_manual/GitLab.md)
+- 第二十六章、QA
+  - [怎样选择适合自己团队的工作流？](./docs/git_manual/team-work-flow.md)
+  - [如何解决连接超时问题](./docs/git_manual/time_out.md)
+- [第二十七章、工作流设计](./docs/git_manual/workflow_design.md)
 
 # 安装依赖
 
