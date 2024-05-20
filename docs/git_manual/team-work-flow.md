@@ -6,14 +6,6 @@ nav:
 order: 27
 ---
 
-
-
-## Todo
-
-改动一个 bug 进行 rebase
-昨天赵的提交 flow 作为对比
-看完其他几篇文章，完善文档
-
 ## rebase 和 merge 的区别
 
 merge:取不同的内容放置到自己的 branch 上，会保留被获取 branch 的历史 commit 记录（按照原本时间进行保留），会混入他人的 chekin，merge 会导致不同分支间的交叉，容易把他人代码当成自己的代码，不便于进行 CodeReview
