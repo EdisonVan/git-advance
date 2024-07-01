@@ -8,7 +8,7 @@
     "clean": "rimraf node_modules package-lock.json yarn.lock yarn-error.log && npm cache clean -f && yarn cache clean",
     "dev": "dumi dev",
     "prepare": "husky install && dumi setup",
-    "start": "npm run dev"
+    "start": "PORT=7088 npm run dev"
   },
   "commitlint": {
     "extends": [
