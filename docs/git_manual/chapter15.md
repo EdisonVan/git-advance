@@ -6,16 +6,25 @@ nav:
 order: 16
 ---
 
+## rebase 和 merge 的区别
+
+- merge:取不同的内容放置到自己的 branch 上，会保留被获取 branch 的历史 commit 记录（按照原本时间进行保留），会混入他人的 chekin，merge 会导致不同分支间的交叉，容易把他人代码当成自己的代码，不便于进行 CodeReview
+e.g. 2 个 branch 之间有别人的提交修改，merge 之后无法清晰的区分谁写的那一部分，张三提交 3 次，李四提交 4 次，张三再次提交 3 次，如果都是通过 merge 的方式，很难查看谁提交了那段代码
+- rebase：会将自己的修改放到最前面，自己分支不会保留其他分支的 check in，rebase 做的是将自己做的内容，在其他分支没有的，全部挪到分支最前方，自己改动的内容无论改动时间都会放到一个区间段中，便于他人检查代码，e.g. rebase 能保证修改内容都存放到一个连续的位置，方便他人查找问题
+- squash merge：将多次提交，作为一个 merge 进行合并
+- gitFlow/代码树
+
+![](../../assets/rebase-20210415.png)
+
 ## Rebase
 
-多人在同一个分支上协作时，容易出现冲突。
-
-即使没有冲突，后 `push` 的童鞋不得不先 `pull` ，在本地合并，然后才能 `push` 成功。
-
-每次合并再 `push` 后，分支变成了这样：
+多人在同一个分支上协作时，容易出现冲突，即使没有冲突，后 `push` 的童鞋不得不先 `pull` ，在本地合并，然后才能 `push` 成功，每次合并再 `push` 后，分支变成了这样：
 
 ```bash
-git log --graph --pretty=oneline --abbrev-commit
+git log --graph --pretty=oneline --abbrev-commit # 以单行的方式显示每个提交的信息、图形化的方式查看 Git 提交历史记录
+# --graph: 以图形化的方式显示提交历史的分支结构。该选项会在提交历史中显示分支、合并等信息
+# --pretty=oneline: 以单行的方式显示每个提交的信息。该选项会将每个提交缩短为一行,只显示提交 ID 的缩写和提交说明
+# --abbrev-commit: 使用提交 ID 的缩写版本,而不是显示完整的 40 个字符的提交 ID。这样可以使输出更加简洁易读
 
 - d1be385 (HEAD -> master, origin/master) init hello
 - e5e69f1 Merge branch 'dev'
@@ -37,11 +46,9 @@ git log --graph --pretty=oneline --abbrev-commit
 - cf810e4 conflict fixed
 ```
 
-其实 Git 的提交历史可以是一条干净的直线 `.Git` 有一种称为 **rebase** 的操作，有人把它翻译成“变基”
+其实 Git 的提交历史可以是一条干净的直线，从实际问题出发，看看怎么把分叉的提交变成直线
 
-从实际问题出发，看看怎么把分叉的提交变成直线。
-
-- 1.在和远程分支同步后，我们对 `hello.py` 这个文件做了两次提交。用 `git log` 命令看看：
+- 1.在和远程分支同步后，对 `hello.py` 这个文件做了两次提交。用 `git log` 命令看看：
 
 ```bash
   git log --graph --pretty=oneline --abbrev-commit
@@ -57,9 +64,9 @@ git log --graph --pretty=oneline --abbrev-commit
   ...
 ```
 
-注意到 Git 用 `(HEAD -> master)`和`(origin/master)` 标识出当前分支的 `HEAD` 和远程 `origin` 的位置分别是 `582d922 add author` 和 `d1be385 init hello`，**本地分支比远程分支快两个提交**。
+注意到 Git 用 `(HEAD -> master)`和`(origin/master)` 标识出当前分支的 `HEAD` 和远程 `origin` 的位置分别是 `582d922 add author` 和 `d1be385 init hello`，**本地分支比远程分支快两个提交**
 
-- 2.现在我们尝试推送本地分支：
+- 2.现在尝试推送本地分支：
 
 ```bash
 git push origin master
@@ -73,7 +80,7 @@ hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-失败了,说明有人先于我们推送了远程分支。
+失败了,说明有人先于推送了远程分支。
 
 - 3.按照经验，先 `pull` 一下
 
@@ -103,7 +110,7 @@ Your branch is ahead of 'origin/master' by 3 commits.
 nothing to commit, working tree clean
 ```
 
-加上刚才合并的提交，现在我们本地分支比远程分支超前 3 个提交。
+加上刚才合并的提交，现在本地分支比远程分支超前 3 个提交。
 
 - 5.用 `git log` 看看：
 
@@ -156,8 +163,8 @@ git log --graph --pretty=oneline --abbrev-commit
 
 **原理**
 
-- Git 把我们本地的提交“挪动”了位置，放到了 `f005ed4 (origin/master) set exit=1` 之后，这样，整个提交历史就成了一条直线。
-- `rebase` 操作前后，最终的提交内容是一致的，但我们本地的 `commit` 修改内容已经变化了，它们的修改不再基于 `d1be385 init hello`，而是基于 `f005ed4 (origin/master) set exit=1`，但最后的提交 `7e61ed4` 内容是一致的。
+- Git 把本地的提交“挪动”了位置，放到了 `f005ed4 (origin/master) set exit=1` 之后，这样，整个提交历史就成了一条直线。
+- `rebase` 操作前后，最终的提交内容是一致的，但本地的 `commit` 修改内容已经变化了，它们的修改不再基于 `d1be385 init hello`，而是基于 `f005ed4 (origin/master) set exit=1`，但最后的提交 `7e61ed4` 内容是一致的。
 - 这就是 **`rebase` 操作的特点**：把分叉的提交历史“整理”成一条直线，看上去更直观。缺点是本地的分叉提交已经被修改过了。
 
 - 7.最后，通过 `push` 操作把本地分支推送到远程：
@@ -215,7 +222,7 @@ Write Reason Here
 # git log --graph # 再次查看提交日志
 ```
 
-- 如果有冲突，需要修改，修改时要注意，保留最新的历史，不然我们的修改就丢弃了
+- 如果有冲突，需要修改，修改时要注意，保留最新的历史，不然的修改就丢弃了
 
 ```bash
 git add .
@@ -347,14 +354,14 @@ $ git log --oneline
 
 - 首先，新建一个分支。需要先基于 master 分支新建并切换到 feature 分支：
 
-```
+```shell
 $ git checkout -b feature/user
 Switched to a new branch 'feature/user'
 ```
 
 - 这是所有 commit 历史：
 
-```
+```shell
 $ git log --oneline
 7157e9e docs(docs): append test line 'update3' to README.md
 5a26aa2 docs(docs): append test line 'update2' to README.md
@@ -421,7 +428,7 @@ d6b17e0 feat(user): add user module with all function implements
 
 - 如果有太多的 commit 需要合并，那么可试试这种方式：先撤销过去的 commit，然后再建一个新的
 
-```
+```bash
 $ git reset HEAD~3
 $ git add .
 $ git commit -am "feat(user): add user resource"
@@ -432,4 +439,4 @@ $ git commit -am "feat(user): add user resource"
 ## 小结
 
 - `rebase` 操作可以把本地未 `push` 的分叉提交历史**整理成直线**
-- `rebase` 的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比
+- `rebase` 的目的是使得在查看历史提交的变化时更容易，因为分叉的提交需要三方对比

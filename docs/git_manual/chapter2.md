@@ -126,7 +126,7 @@ git commit -m "add 3 files."
 
 #### git commit --amend：修改最近一次 commit 的 message
 
-有时，刚提交完一个 commit，但发现 commit 的描述不符合规范或需要纠正，这时，可通过 git commit --amend 命令来修改刚刚提交 commit 的 Commit Message
+刚提交完一个 commit，但发现 commit 的描述不符合规范或需要纠正，这时，可通过 git commit --amend 命令来修改刚刚提交 commit 的 Commit Message
 
 ```
 $ git log --oneline
@@ -155,3 +155,5 @@ $ git log --oneline
 ```
 
 可看到最近一次 commit 的 message 成功被修改为期望的内容
+
+- [修改上次git commit的时间](https://blog.csdn.net/guoyajie1990/article/details/73824732)

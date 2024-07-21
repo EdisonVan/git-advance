@@ -15,6 +15,7 @@ order: 46
 
 工作模式：
 ![集中式工作流](../../assets/集中式工作流.png)
+
 日志：
 ![集中式工作流日志](../../assets/集中式工作流日志.png)
 
@@ -29,50 +30,49 @@ order: 46
 
 ## 功能分支工作流
 
-![功能分支工作流](../../assets/功能分支工作流.png)
+![](../../assets/功能分支工作流.png "功能分支工作流")
 
 - 基于 master 分支新建一个功能分支，在功能分支上进行开发，开发完成之后合并到 master 分支
-- 可以避免不同功能之间的相互影响，使提交历史看起来更加简洁
+- 可避免不同功能之间的相互影响，使提交历史看起来更加简洁
 - 合并到 `master` 分支时，需要提交 PR（`pull request`），而不是直接将代码 `merge` 到 `master` 分支
-  - PR 流程可以把分支代码提供给团队其他开发人员进行 CR（`Code Review`），在 PR 页面讨论代码
-  - PR 可以确保合并到 master 的代码是健壮的
+  - PR 流程可把分支代码提供给团队其他开发人员进行 CR（`Code Review`），在 PR 页面讨论代码
+  - PR 可确保合并到 master 的代码是健壮
   - CR 使开发者充分参与到代码的讨论中，有助于提高代码的质量，提供了一个代码变更的历史回顾途径
 - 缺点：无法给分支分配明确的目的，不利于团队配合
 - 适用：开发团队相对固定、规模较小的项目
 
 **具体开发流程**
 
-1. 基于 master 分支新建一个功能分支，功能分支可以取一些有意义的名字，便于理解
+1. 基于 master 分支新建一个功能分支，功能分支可取一些有意义的名字，便于理解
 
-```
+```bash
 git checkout -b feature/rate-limiting
 ```
 
 2. 在功能分支上进行代码开发，开发完成后 commit 到功能分支
 
-```
+```bash
 git add limit.go
 git commit -m "add rate limiting"
 ```
 
 3. 将本地功能分支代码 push 到远程仓库
 
-```
+```bash
 git push origin feature/rate-limiting
 ```
 
 4. 在远程仓库上创建 PR（例如：GitHub）
 
 - 进入 GitHub 平台上的项目主页，点击 Compare & pull request 提交 PR
-- 进入 PR 页面，在该页面中可以根据需要填写评论，最后点击 Create pull request 提交 PR
+- 进入 PR 页面，在该页面中可根据需要填写评论，最后点击 Create pull request 提交 PR
 
-5. 代码管理员收到 PR 后，可以 CR 代码，CR 通过后，再点击 `Merge pull request` 将 PR 合并到 master。`Merge pull request` 提供了 3 种 merge 方法：
+5. 代码管理员收到 PR 后，可 CR 代码，CR 通过后，再点击 `Merge pull request` 将 PR 合并到 master。`Merge pull request` 提供了 3 种 merge 方法
 
-- `Create a merge commit`：GitHub 的底层操作是 `git merge --no-ff`。feature 分支上所有的 commit 都会加到 master 分支上，并且会生成一个 `merge commit`
-  - 可以让清晰地知道是谁做了提交，做了哪些提交，回溯历史时也会更加方便
+- `Create a merge commit`（推荐）：GitHub 的底层操作是 `git merge --no-ff`。feature 分支上所有的 commit 都会加到 master 分支上，并且会生成一个 `merge commit`
+  - 可让清晰地知道是谁做了提交，做了哪些提交，回溯历史时也会更加方便
 - `Squash and merge`：GitHub 的底层操作是 `git merge --squash`。会使该 `pull request` 上的所有 commit 都合并成一个 commit 加到 master 分支上，原来的 commit 历史会丢失
-- `Rebase and merge`：GitHub 的底层操作是 `git rebase`。会将 `pull request` 上的所有提交历史按照原有顺序依次添加到 master 分支的头部（HEAD）
-- 推荐使用第一种`Create a merge commit`
+- `Rebase and merge`：GitHub 的底层操作是 `git rebase`，会将 `pull request` 上的所有提交历史按照原有顺序依次添加到 master 分支的头部（HEAD）
 
 ## Git Flow 工作流
 
@@ -81,12 +81,13 @@ git push origin feature/rate-limiting
 - 适合：开发团队相对固定，规模较大的项目或者迭代速度快的项目
 - 缺点：有一定的上手难度
 - 优点：
-  - 每个分支分工明确，可以最大程度减少它们之间的相互影响
-  - 可以创建多个分支，故可以并行开发多个功能
-  - 也可以添加 CR ，保障代码质量
+  - 每个分支分工明确，可最大程度减少它们之间的相互影响
+  - 可创建多个分支，故可并行开发多个功能
+  - 也可添加 CR ，保障代码质量
 
 **Git Flow 的 5 种分支**
-![GitFlow](../../assets/GitFlow分支.png)
+
+![](../../assets/GitFlow分支.png)
 
 **Git Flow 开发流程**
 
@@ -109,14 +110,14 @@ func main() {
 
 1. 创建一个常驻的分支：develop
 
-```
-$ git checkout -b develop master
+```bash
+git checkout -b develop master
 ```
 
 2. 基于 develop 分支，新建一个功能分支：`feature/print-hello-world`
 
-```
-$ git checkout -b feature/print-hello-world develop
+```bash
+git checkout -b feature/print-hello-world develop
 ```
 
 3. `feature/print-hello-world` 分支中，在 `main.go` 文件中添加一行代码 `fmt.Println("Hello")`
@@ -124,77 +125,77 @@ $ git checkout -b feature/print-hello-world develop
 
 - 正处在新功能的开发中，突然线上代码发现了一个 Bug，要立即停止手上的工作，修复线上的 Bug
 
-```
-$ git stash #   1. 开发工作只完成了一半，还不想提交，可以临时保存修改至堆栈区
-$ git checkout -b hotfix/print-error master # 2. 从 master 建立 hotfix 分支
-$ vi main.go # 3. 修复 bug，callmainfunction -> call main function
-$ git commit -a -m 'fix print message error bug' # 4. 提交修复
-$ git checkout develop # 5. 切换到 develop 分支
-$ git merge --no-ff hotfix/print-error # 6. 把 hotfix 分支合并到 develop 分支
-$ git checkout master # 7. 切换到 master 分支
-$ git merge --no-ff hotfix/print-error # 8. 把 hotfix 分支合并到 master
-$ git tag -a v0.9.1 -m "fix log bug" # 9. master 分支打 tag
-$ go build -v . # 10. 编译代码，并将编译好的二进制更新到生产环境
-$ git branch -d hotfix/print-error # 11. 修复好后，删除 hotfix/xxx 分支
-$ git checkout feature/print-hello-world # 12. 切换到开发分支下
-$ git merge --no-ff develop # 13. 因为 develop 有更新，这里最好同步更新下
-$ git stash pop # 14. 恢复到修复前的工作状态
+```bash
+git stash #   1. 开发工作只完成了一半，还不想提交，可临时保存修改至堆栈区
+git checkout -b hotfix/print-error master # 2. 从 master 建立 hotfix 分支
+vi main.go # 3. 修复 bug，callmainfunction -> call main function
+git commit -a -m 'fix print message error bug' # 4. 提交修复
+git checkout develop # 5. 切换到 develop 分支
+git merge --no-ff hotfix/print-error # 6. 把 hotfix 分支合并到 develop 分支
+git checkout master # 7. 切换到 master 分支
+git merge --no-ff hotfix/print-error # 8. 把 hotfix 分支合并到 master
+git tag -a v0.9.1 -m "fix log bug" # 9. master 分支打 tag
+go build -v . # 10. 编译代码，并将编译好的二进制更新到生产环境
+git branch -d hotfix/print-error # 11. 修复好后，删除 hotfix/xxx 分支
+git checkout feature/print-hello-world # 12. 切换到开发分支下
+git merge --no-ff develop # 13. 因为 develop 有更新，这里最好同步更新下
+git stash pop # 14. 恢复到修复前的工作状态
 ```
 
 5. 继续开发。在 main.go 中加入 `fmt.Println("Hello World")`
 6. 提交代码到 `feature/print-hello-world` 分支
 
-```
-$ git commit -a -m "print 'hello world'"
+```bash
+git commit -a -m "print 'hello world'"
 ```
 
 7. 在 `feature/print-hello-world` 分支上做 CR (code review)
 
 - 首先，需要将 `feature/print-hello-world push` 到代码托管平台，例如 GitHub 上
 
-```
-$ git push origin feature/print-hello-world
+```bash
+git push origin feature/print-hello-world
 ```
 
 - 然后，在 GitHub 上，基于 `feature/print-hello-world` 创建 PR (pull request)
-- 之后就可以指定 Reviewers 进行 CR (code review)
+- 之后就可指定 Reviewers 进行 CR (code review)
   ![CR](../../assets/GitHub-CR.png)
 
 8. CR 通过后，由代码仓库 matainer 将功能分支合并到 develop 分支
 
-```
-$ git checkout develop
-$ git merge --no-ff feature/print-hello-world
+```bash
+git checkout develop
+git merge --no-ff feature/print-hello-world
 ```
 
 9. 基于 develop 分支，创建 release 分支，测试代码
 
-```
-$ git checkout -b release/1.0.0 develop
-$ go build -v . # 构建后，部署二进制文件，并测试
+```bash
+git checkout -b release/1.0.0 develop
+go build -v . # 构建后，部署二进制文件，并测试
 ```
 
 10. 测试失败。要求打印 `hello world`，但打印的是 `Hello World`。直接在 `release/1.0.0` 分支修改代码，修改完成后，提交并编译部署
 
-```
-$ git commit -a -m "fix bug"
-$ go build -v .
+```bash
+git commit -a -m "fix bug"
+go build -v .
 ```
 
 11. 测试通过后，将功能分支合并到 master 分支和 develop 分支
 
-```
-$ git checkout develop
-$ git merge --no-ff release/1.0.0
-$ git checkout master
-$ git merge --no-ff release/1.0.0
-$ git tag -a v1.0.0 -m "add print hello world"  # master 分支打 tag
+```bash
+git checkout develop
+git merge --no-ff release/1.0.0
+git checkout master
+git merge --no-ff release/1.0.0
+git tag -a v1.0.0 -m "add print hello world"  # master 分支打 tag
 ```
 
-12. 删除 `feature/print-hello-world` 分支，也可以选择性删除 `release/1.0.0` 分支
+12. 删除 `feature/print-hello-world` 分支，也可选择性删除 `release/1.0.0` 分支
 
-```
-$ git branch -d feature/print-hello-world
+```bash
+git branch -d feature/print-hello-world
 ```
 
 ## Forking 工作流
@@ -208,14 +209,13 @@ $ git branch -d feature/print-hello-world
 
 ![forking](../../assets/forking.png)
 
-- A 拥有一个远程仓库， B 也想参与 A 项目的开发，B 可以 fork 一份 A 的远程仓库到自己的 GitHub 账号下。后续 B 可以在自己的项目进行开发，开发完成后，B 可以给 A 提交一个 PR。这时 A 会收到通知，得知有新的 PR 被提交，A 会去查看 PR 并 CR。如果有问题，A 会直接在 PR 页面提交评论，B 看到评论后会做进一步的修改。最后 A 通过 B 的 PR 请求，将代码合并进了 A 的仓库。这样就完成了 A 代码仓库新特性的开发。项目远程仓库和开发者远程仓库完全独立，开发者通过提交 `Pull Request` 的方式给远程仓库贡献代码，项目维护者选择性地接受任何开发者的提交
+- A 拥有一个远程仓库， B 也想参与 A 项目的开发，B 可 fork 一份 A 的远程仓库到自己的 GitHub 账号下。后续 B 可在自己的项目进行开发，开发完成后，B 可给 A 提交一个 PR。这时 A 会收到通知，得知有新的 PR 被提交，A 会去查看 PR 并 CR。如果有问题，A 会直接在 PR 页面提交评论，B 看到评论后会做进一步的修改。最后 A 通过 B 的 PR 请求，将代码合并进了 A 的仓库。这样就完成了 A 代码仓库新特性的开发。项目远程仓库和开发者远程仓库完全独立，开发者通过提交 `Pull Request` 的方式给远程仓库贡献代码，项目维护者选择性地接受任何开发者的提交
 - 优点：
-  - 可以避免授予开发者项目远程仓库的权限，从而提高项目远程仓库的安全性
-  - 任意开发者都可以参与项目的开发
+  - 可避免授予开发者项目远程仓库的权限，从而提高项目远程仓库的安全性
+  - 任意开发者都可参与项目的开发
 - 局限性：对于职能分工明确且不对外开源的项目优势不大
 - 适用：
-  - 开源项目中
-  - 开发者有衍生出自己的衍生版的需求
+  - 开源项目中，开发者有衍生出自己的衍生版的需求
   - 开发者不固定，可能是任意一个能访问到项目的开发者
 
 **步骤**
@@ -226,12 +226,12 @@ $ git branch -d feature/print-hello-world
 
 2. 克隆 fork 的仓库到本地
 
-```
-$ git clone https://github.com/colin404fork/gitflow-demo
-$ cd gitflow-demo
-$ git remote add upstream https://github.com/marmotedu/gitflow-demo
-$ git remote set-url --push upstream no_push # Never push to upstream master
-$ git remote -v # Confirm that your remotes make sense
+```bash
+git clone https://github.com/colin404fork/gitflow-demo
+cd gitflow-demo
+git remote add upstream https://github.com/marmotedu/gitflow-demo
+git remote set-url --push upstream no_push # Never push to upstream master
+git remote -v # Confirm that your remotes make sense
 origin  https://github.com/colin404fork/gitflow-demo (fetch)
 origin  https://github.com/colin404fork/gitflow-demo (push)
 upstream  https://github.com/marmotedu/gitflow-demo (fetch)
@@ -242,54 +242,54 @@ upstream  https://github.com/marmotedu/gitflow-demo (push)
 
 - 首先，要同步本地仓库的 master 分支为最新的状态
 
-```
-$ git fetch upstream
-$ git checkout master
-$ git rebase upstream/master
+```bash
+git fetch upstream
+git checkout master
+git rebase upstream/master
 ```
 
 - 然后，创建功能分支
 
-```
-$ git checkout -b feature/add-function
+```bash
+git checkout -b feature/add-function
 ```
 
 4. 提交 commit
 
-```
-$ git fetch upstream # commit 前需要再次同步 feature 跟 upstream/master
-$ git rebase upstream/master
-$ git add <file>
-$ git status
-$ git commit
+```bash
+git fetch upstream # commit 前需要再次同步 feature 跟 upstream/master
+git rebase upstream/master
+git add <file>
+git status
+git commit
 ```
 
 - 可用 `git rebase` 来合并和修改 commit
 
-```
+```bash
 git rebase -i origin/master
 ```
 
-- 合并 commit 也可以先撤销过去 5 个 commit，然后再建一个新的：
+- 合并 commit 也可先撤销过去 5 个 commit，然后再建一个新的：
 
-```
-$ git reset HEAD~5
-$ git add .
-$ git commit -am "Here's the bug fix that closes #28"
-$ git push --force
+```bash
+git reset HEAD~5
+git add .
+git commit -am "Here's the bug fix that closes #28"
+git push --force
 ```
 
-- squash 和 fixup 命令，还可以当作命令行参数使用，自动合并 commit
+- squash 和 fixup 命令，还可当作命令行参数使用，自动合并 commit
 
-```
-$ git commit --fixup
-$ git rebase -i --autosquash
+```bash
+git commit --fixup
+git rebase -i --autosquash
 ```
 
 5. push 功能分支到个人远程仓库
 
-```
-$ git push -f origin feature/add-function
+```bash
+git push -f origin feature/add-function
 ```
 
 6. 创建 `pull request`，然后请求 reviewers 进行代码 review，确认后合并到 master
