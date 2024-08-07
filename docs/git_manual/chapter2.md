@@ -156,4 +156,7 @@ $ git log --oneline
 
 可看到最近一次 commit 的 message 成功被修改为期望的内容
 
-- [修改上次git commit的时间](https://blog.csdn.net/guoyajie1990/article/details/73824732)
+```bash
+date -R # 查看当前时间，再根据需要改为自定义时间
+git commit --amend --date="Wed, 07 Aug 2024 19:16:26 +0800"
+```
