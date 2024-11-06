@@ -230,6 +230,8 @@ git rebase --continue
 # .如果没有冲突，或者冲突已经解决，输入wq保存并退出
 ```
 
+> [把多个不连续的commit合并成一个commit](https://blog.csdn.net/qq_29518275/article/details/122052289)
+
 ## git rebase 支持的变更操作
 
 ![2-1](../../assets/变更操作-20220625.png '变更操作')

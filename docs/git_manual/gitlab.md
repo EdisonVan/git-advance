@@ -35,9 +35,10 @@ order: 26
   - issue可用于项目管理，提bug等
 
 ### code review
+
 - 对分支实行保护，团队之间不能直接合并到分支上
 - [Merge Requests阶段](https://gitlab.com/gitlab-org/gitlab/-/merge_requests)
-    - 增加CodeReview,代码标砖限制
+    - 增加CodeReview，代码标砖限制
     - 自动化测试
 - Review方式
     - 自动化机器人CodeReview
@@ -45,6 +46,7 @@ order: 26
 - Settings/Repository中进行相应push设置、设置保护分支
 
 ### 保证集成质量
+
 - 前提：Settings->CI/CD->Runners(跑CI/CD的代理)
 - CI/CD会对每一次commit进行完备检查
   - Build->Prepare->Test->Post-test->post-cleanup

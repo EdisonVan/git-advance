@@ -151,15 +151,15 @@ git commit -a -m "print 'hello world'"
 
 7. 在 `feature/print-hello-world` 分支上做 CR (code review)
 
-- 首先，需要将 `feature/print-hello-world push` 到代码托管平台，例如 GitHub 上
+- 将 `feature/print-hello-world push` 到代码托管平台，例如 GitHub 上
 
 ```bash
 git push origin feature/print-hello-world
 ```
 
-- 然后，在 GitHub 上，基于 `feature/print-hello-world` 创建 PR (pull request)
-- 之后就可指定 Reviewers 进行 CR (code review)
-  ![CR](../../assets/GitHub-CR.png)
+- 在 GitHub 上，基于 `feature/print-hello-world` 创建 PR (pull request)
+- 指定 Reviewers 进行 CR (code review)
+  ![](../../assets/GitHub-CR.png "CR")
 
 8. CR 通过后，由代码仓库 matainer 将功能分支合并到 develop 分支
 

@@ -67,6 +67,7 @@ order: 24
 
 - 任意项目->Settings->branches->Add rule:
   ![](../../assets/23-16.png)
+
 - 选择分支，下面有一些 review 的规则，根据自己需要选择规则。最后 Create
   ![](../../assets/23-17.png)
 
@@ -110,5 +111,6 @@ order: 24
 - 也可以去商城找服务保证集成的质量
   ![](../../assets/23-30.png)
   > 如 Travis CI 服务
+
 - 在 Setting 中可以看到已安装集成的服务
   ![](../../assets/23-31.png)

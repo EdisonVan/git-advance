@@ -158,5 +158,6 @@ $ git log --oneline
 
 ```bash
 date -R # 查看当前时间，再根据需要改为自定义时间
-git commit --amend --date="Wed, 07 Aug 2024 19:16:26 +0800"
+git commit -m 'feat: 自动订阅开关'   
+git commit --amend --date="Wed Sep 18 2024 19:30:06 +0800"
 ```
