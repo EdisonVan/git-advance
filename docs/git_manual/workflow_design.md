@@ -270,7 +270,7 @@ git commit
 git rebase -i origin/master
 ```
 
-- 合并 commit 也可先撤销过去 5 个 commit，然后再建一个新的：
+- 合并 commit 也可先撤销过去 5 个 commit，然后再建一个新的
 
 ```bash
 git reset HEAD~5

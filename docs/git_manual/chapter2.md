@@ -159,5 +159,33 @@ $ git log --oneline
 ```bash
 date -R # 查看当前时间，再根据需要改为自定义时间
 git commit -m 'feat: 自动订阅开关'   
-git commit --amend --date="Wed Sep 18 2024 19:30:06 +0800"
+git commit --amend --date="Tue Jan 21 19:45:28 2025 +0800"
+```
+
+```diff
+"scripts": {
+    // ...
++   "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
++   "changelog:all": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+}
+```
+
+**vite.config.ts**
+```diff
++ import gitRepoInfo from 'git-repo-info';
++ import { createHtmlPlugin } from 'vite-plugin-html';
++ const info = gitRepoInfo();
+export default defineConfig({
+  plugins: [
+    # ...
++     createHtmlPlugin({
++      inject: {
++        data: {
++          GIT_COMMIT_HASH: info.sha.substring(0, 8),
++          VERSION_TAG: info.lastTag,
++        },
++      },
++    }),
+  ],
+});
 ```
