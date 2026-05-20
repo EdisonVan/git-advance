@@ -445,8 +445,6 @@ $ git commit -am "feat(user): add user resource"
 
 ## 其他
 
-`git config --global pull.rebase true`
-
 1. 解决了什么问题？
 当本地分支和远程分支有分歧（即都有新的提交）时，直接 `git pull`（默认行为）会产生一个多余的合并提交（merge commit），导致提交历史出现分叉：
 ```
@@ -467,4 +465,5 @@ $ git commit -am "feat(user): add user resource"
 - **与 `git pull --rebase` 等价**：设置后，直接运行 `git pull` 等同于 `git pull --rebase`。
 
 
-3. 恢复默认的 merge 方式：`git config --global --unset pull.rebase`:
+3. 启用rebase形式的merge：`git config --global pull.rebase true`
+4. 恢复默认的 merge 方式：`git config --global --unset pull.rebase`:
